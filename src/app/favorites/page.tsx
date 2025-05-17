@@ -35,7 +35,7 @@ export default function FavoritesPage() {
   }, [user]);
 
   return (
-    <div className="flex min-h-screen bg-pink-50">
+    <div className="flex min-h-screen bg-purple-50">
       <Sidebar
         userEmail={user?.email || 'user@example.com'}
         isOpen={sidebarOpen}
@@ -45,7 +45,7 @@ export default function FavoritesPage() {
       <div className="flex-1 p-8 relative">
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-pink-500 text-white"
+          className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-purple-500 text-white"
         >
           <svg
             className="w-6 h-6"
@@ -60,7 +60,7 @@ export default function FavoritesPage() {
           </svg>
         </button>
 
-        <h1 className="text-3xl font-bold text-pink-700 mb-6">❤️ Your Favorites</h1>
+        <h1 className="text-3xl font-bold text-purple-700 mb-6">💜 Your Favorites</h1>
 
         {favorites.length === 0 ? (
           <p className="text-gray-600">No favorite books yet.</p>
@@ -77,7 +77,7 @@ export default function FavoritesPage() {
                     className="mb-3 object-contain"
                   />
                 )}
-                <h2 className="text-lg font-semibold">{book.title}</h2>
+                <h2 className="text-lg font-semibold text-purple-700">{book.title}</h2>
                 <p className="text-sm italic text-gray-600">
                   {book.authors?.join(', ')}
                 </p>
@@ -88,7 +88,7 @@ export default function FavoritesPage() {
                   href={book.previewLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-auto text-pink-600 hover:underline"
+                  className="mt-auto text-purple-600 hover:underline"
                 >
                   Preview
                 </a>

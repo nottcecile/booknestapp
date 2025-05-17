@@ -14,8 +14,6 @@ type Book = {
   thumbnail?: string;
   previewLink?: string;
 };
-
-// Type for the Google Books API response item
 type GoogleBookItem = {
   id: string;
   volumeInfo: {
@@ -65,7 +63,7 @@ export default function CategoriesPage() {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-pink-50">
+    <div className="flex min-h-screen bg-purple-50">
       {/* Sidebar */}
       <Sidebar
         userEmail="user@example.com"
@@ -78,7 +76,7 @@ export default function CategoriesPage() {
         {/* Toggle Button */}
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-pink-500 text-white"
+          className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-purple-500 text-white"
           aria-label="Toggle sidebar"
         >
           <svg
@@ -100,7 +98,7 @@ export default function CategoriesPage() {
           </svg>
         </button>
 
-        <h1 className="text-3xl font-bold text-pink-700 mb-6">
+        <h1 className="text-3xl font-bold text-purple-700 mb-6">
           📚 All Book Categories
         </h1>
 
@@ -134,7 +132,7 @@ export default function CategoriesPage() {
                     href={book.previewLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-auto text-pink-600 hover:underline"
+                    className="mt-auto text-purple-600 hover:underline"
                   >
                     Preview
                   </a>

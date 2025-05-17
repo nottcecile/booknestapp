@@ -36,7 +36,7 @@ export default function Dashboard() {
           ...(doc.data() as Omit<FavoriteBook, 'id'>),
         }));
 
-     setFavorites(favBooks);
+        setFavorites(favBooks);
         setLoadingFavorites(false);
       }
     });
@@ -47,8 +47,8 @@ export default function Dashboard() {
   if (!user) return <p className="p-8">Loading...</p>;
 
   return (
-    <main className="flex-grow p-8 overflow-y-auto bg-pink-50 min-h-[80vh] rounded-lg shadow-md">
-      <h1 className="text-4xl font-bold text-pink-700 mb-4 font-serif">
+    <div className="flex-grow p-8 overflow-y-auto bg-purple-50 min-h-[80vh] rounded-lg shadow-md">
+      <h1 className="text-4xl font-bold text-purple-700 mb-4 font-serif">
         Welcome, {user.displayName || user.email?.split('@')[0] || 'Bookworm'}! 📚
       </h1>
       <p className="text-gray-700 text-lg mb-8 max-w-xl">
@@ -57,7 +57,7 @@ export default function Dashboard() {
 
       {/* Favorites Preview */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold text-pink-600 mb-3">Your Favorites</h2>
+        <h2 className="text-2xl font-semibold text-purple-600 mb-3">Your Favorites</h2>
         {loadingFavorites ? (
           <p>Loading favorites...</p>
         ) : favorites.length === 0 ? (
@@ -78,11 +78,11 @@ export default function Dashboard() {
                     className="rounded-md mb-3 object-cover"
                   />
                 ) : (
-                  <div className="w-full h-48 bg-pink-100 rounded-md mb-3 flex items-center justify-center text-pink-300">
+                  <div className="w-full h-48 bg-purple-100 rounded-md mb-3 flex items-center justify-center text-purple-300">
                     No Image
                   </div>
                 )}
-                <h3 className="font-semibold text-pink-700 mb-2 truncate">{book.title || 'Untitled'}</h3>
+                <h3 className="font-semibold text-purple-700 mb-2 truncate">{book.title || 'Untitled'}</h3>
                 <p className="text-gray-600 text-sm truncate">{book.author || 'Unknown Author'}</p>
               </div>
             ))}
@@ -92,7 +92,7 @@ export default function Dashboard() {
 
       {/* Reading Vibes Section */}
       <section>
-        <h2 className="text-2xl font-semibold text-pink-600 mb-3">Reading Vibes ✨</h2>
+        <h2 className="text-2xl font-semibold text-purple-600 mb-3">Prose Emotion ✨</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
           {[
             { label: 'Sweet Romance', emoji: '💕' },
@@ -106,14 +106,14 @@ export default function Dashboard() {
           ].map((vibe) => (
             <div
               key={vibe.label}
-              className="bg-white shadow-sm hover:shadow-md transition rounded-xl p-4 text-center cursor-pointer hover:bg-pink-100"
+              className="bg-white shadow-sm hover:shadow-md transition rounded-xl p-4 text-center cursor-pointer hover:bg-purple-100"
             >
               <span className="text-3xl">{vibe.emoji}</span>
-              <p className="mt-2 font-medium text-pink-700 text-sm">{vibe.label}</p>
+              <p className="mt-2 font-medium text-purple-700 text-sm">{vibe.label}</p>
             </div>
           ))}
         </div>
       </section>
-    </main>
+    </div>
   );
 }

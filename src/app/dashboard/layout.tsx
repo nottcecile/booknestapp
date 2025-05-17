@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const userEmail = "user@example.com"; // Replace or fetch dynamically
 
   return (
-    <div className="flex h-screen overflow-hidden bg-pink-50">
+    <div className="flex h-screen overflow-hidden bg-purple-50">
       {/* Sidebar */}
       <Sidebar 
         userEmail={userEmail} 

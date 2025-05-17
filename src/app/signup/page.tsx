@@ -48,7 +48,7 @@ export default function SignUpPage() {
         onSubmit={handleSignUp}
         className="relative z-10 bg-white/90 rounded-xl shadow-xl p-8 w-full max-w-md text-gray-800"
       >
-        <h2 className="text-2xl font-bold mb-6 text-center font-serif text-pink-600">
+        <h2 className="text-2xl font-bold mb-6 text-center font-serif text-purple-600">
           Create Your Account
         </h2>
 
@@ -61,7 +61,7 @@ export default function SignUpPage() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-300"
+          className="w-full mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-300"
           required
         />
         <input
@@ -69,7 +69,7 @@ export default function SignUpPage() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-300"
+          className="w-full mb-4 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-300"
           required
         />
         <input
@@ -77,20 +77,20 @@ export default function SignUpPage() {
           placeholder="Confirm Password"
           value={confirm}
           onChange={(e) => setConfirm(e.target.value)}
-          className="w-full mb-6 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-300"
+          className="w-full mb-6 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-300"
           required
         />
 
         <button
           type="submit"
-          className="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded-lg transition duration-300"
+          className="w-full bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 rounded-lg transition duration-300"
         >
           Create Account
         </button>
 
         <p className="text-center text-sm mt-4">
           Already have an account?{' '}
-          <Link href="/login" className="text-pink-600 hover:underline">
+          <Link href="/login" className="text-purple-600 hover:underline">
             Log in
           </Link>
         </p>

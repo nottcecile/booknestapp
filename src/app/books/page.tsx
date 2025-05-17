@@ -92,7 +92,7 @@ export default function BooksPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-pink-50">
+    <div className="flex min-h-screen bg-purple-50">
       {/* Sidebar */}
       <Sidebar
         userEmail={user?.email || 'Guest'}
@@ -105,7 +105,7 @@ export default function BooksPage() {
         {/* Hamburger toggle */}
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-pink-500 text-white"
+          className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-purple-500 text-white"
         >
           <svg
             className="w-6 h-6"
@@ -120,7 +120,7 @@ export default function BooksPage() {
           </svg>
         </button>
 
-        <h1 className="text-3xl font-bold text-pink-700 mb-6">📖 Discover Books</h1>
+        <h1 className="text-3xl font-bold text-purple-700 mb-6">📖 Discover Books</h1>
         <div className="flex gap-2 mb-6">
           <input
             type="text"
@@ -131,7 +131,7 @@ export default function BooksPage() {
           />
           <button
             onClick={() => fetchBooks(queryTerm)}
-            className="bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600"
+            className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
           >
             Search
           </button>
@@ -169,13 +169,13 @@ export default function BooksPage() {
                     href={book.previewLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-pink-600 hover:underline"
+                    className="text-purple-600 hover:underline"
                   >
                     Preview
                   </a>
                   <button
                     onClick={() => addToFavorites(book)}
-                    className="ml-auto bg-pink-500 text-white px-2 py-1 rounded text-sm hover:bg-pink-600"
+                    className="ml-auto bg-purple-500 text-white px-2 py-1 rounded text-sm hover:bg-purple-600"
                   >
                     ❤️ Favorite
                   </button>

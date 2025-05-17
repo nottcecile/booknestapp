@@ -6,10 +6,10 @@ type NavbarProps = {
 
 export default function Navbar({ toggleSidebar }: NavbarProps) {
   return (
-    <header className="flex items-center justify-between bg-pink-200 px-6 py-4 shadow-md md:hidden">
+    <header className="flex items-center justify-between bg-purple-200 px-6 py-4 shadow-md md:hidden">
       <button
         onClick={toggleSidebar}
-        className="text-pink-700 focus:outline-none"
+        className="text-purple-700 focus:outline-none"
         aria-label="Toggle menu"
       >
         {/* Hamburger icon */}
@@ -25,7 +25,7 @@ export default function Navbar({ toggleSidebar }: NavbarProps) {
         </svg>
       </button>
 
-      <h1 className="text-pink-700 font-bold text-xl font-serif">BookNest</h1>
+      <h1 className="text-purple-700 font-bold text-xl font-serif">BookNest</h1>
 
       {/* empty div to center title */}
       <div style={{ width: 24 }} />

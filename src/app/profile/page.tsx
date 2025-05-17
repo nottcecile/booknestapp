@@ -11,7 +11,7 @@ export default function ProfilePage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-pink-50">
+    <div className="flex min-h-screen bg-purple-50">
       {/* Sidebar */}
       <Sidebar
         userEmail={user?.email || 'Guest'}
@@ -24,7 +24,7 @@ export default function ProfilePage() {
         {/* Hamburger toggle for mobile */}
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-pink-500 text-white"
+          className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-purple-500 text-white"
           aria-label="Toggle sidebar"
         >
           <svg
@@ -40,7 +40,7 @@ export default function ProfilePage() {
           </svg>
         </button>
 
-        <h1 className="text-3xl font-bold text-pink-700 mb-6">👤 Your Profile</h1>
+        <h1 className="text-3xl font-bold text-purple-700 mb-6">👤 Your Profile</h1>
 
         <div className="bg-white rounded-2xl shadow-md p-6 max-w-xl w-full">
           <div className="flex items-center gap-4 mb-4">
@@ -49,13 +49,13 @@ export default function ProfilePage() {
               alt="Avatar"
               width={64}
               height={64}
-              className="rounded-full border border-pink-200"
+              className="rounded-full border border-purple-200"
             />
             <div>
-              <p className="text-xl font-semibold text-pink-800">
+              <p className="text-xl font-semibold text-purple-800">
                 {user?.displayName || 'Anonymous User'}
               </p>
-              <p className="text-sm text-pink-600 break-words">{user?.email}</p>
+              <p className="text-sm text-purple-600 break-words">{user?.email}</p>
             </div>
           </div>
 
