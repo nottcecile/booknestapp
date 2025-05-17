@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { db } from '@/lib/firebase';
-import { collection, doc, setDoc, getDocs, query, where } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { auth } from '@/lib/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Sidebar from '../Sidebar';
+import Image from 'next/image';
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY;
 
@@ -40,7 +41,7 @@ export default function BooksPage() {
         setBooks([]);
         setMessage('No books found.');
       } else {
-        const mapped = data.items.map((item: any) => ({
+        const mapped = data.items.map((item: Record<string, any>) => ({
           id: item.id,
           title: item.volumeInfo.title,
           authors: item.volumeInfo.authors || [],
@@ -63,7 +64,7 @@ export default function BooksPage() {
 
   useEffect(() => {
     fetchBooks(queryTerm);
-  }, []);
+  }, [queryTerm]);
 
   const addToFavorites = async (book: Book) => {
     if (!user) return alert('Please login first.');
@@ -134,10 +135,12 @@ export default function BooksPage() {
                 className="bg-white shadow rounded p-4 flex flex-col"
               >
                 {book.thumbnail && (
-                  <img
+                  <Image
                     src={book.thumbnail}
                     alt={book.title}
-                    className="mb-3 h-48 object-contain"
+                    width={128}
+                    height={192}
+                    className="mb-3 object-contain"
                   />
                 )}
                 <h2 className="text-lg font-semibold">{book.title}</h2>

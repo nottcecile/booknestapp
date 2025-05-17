@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, type User } from 'firebase/auth';
 import { auth, db } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import Link from 'next/link';
+import Image from 'next/image';
 
 type FavoriteBook = {
   id: string;
@@ -17,7 +17,7 @@ type FavoriteBook = {
 
 export default function Dashboard() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [favorites, setFavorites] = useState<FavoriteBook[]>([]);
   const [loadingFavorites, setLoadingFavorites] = useState(true);
 
@@ -36,9 +36,7 @@ export default function Dashboard() {
           ...(doc.data() as Omit<FavoriteBook, 'id'>),
         }));
 
-        console.log("Favorites fetched:", favBooks); // <-- Debug log
-
-        setFavorites(favBooks);
+     setFavorites(favBooks);
         setLoadingFavorites(false);
       }
     });
@@ -72,10 +70,12 @@ export default function Dashboard() {
                 className="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow cursor-pointer"
               >
                 {book.coverUrl ? (
-                  <img
+                  <Image
                     src={book.coverUrl}
                     alt={`Cover of ${book.title ?? 'book'}`}
-                    className="w-full h-48 object-cover rounded-md mb-3"
+                    width={300}
+                    height={192}
+                    className="rounded-md mb-3 object-cover"
                   />
                 ) : (
                   <div className="w-full h-48 bg-pink-100 rounded-md mb-3 flex items-center justify-center text-pink-300">
@@ -91,30 +91,29 @@ export default function Dashboard() {
       </section>
 
       {/* Reading Vibes Section */}
-<section>
-  <h2 className="text-2xl font-semibold text-pink-600 mb-3">Reading Vibes ✨</h2>
-  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-    {[
-      { label: 'Sweet Romance', emoji: '💕' },
-      { label: 'Nigerian Folklore', emoji: '🧚🏽‍♀️' },
-      { label: 'Dark & Mysterious', emoji: '🌑' },
-      { label: 'Magical Escapes', emoji: '✨' },
-      { label: 'Cozy Reads', emoji: '🎀' },
-      { label: 'Heartbreakers', emoji: '💔' },
-      { label: 'Steamy Nights', emoji: '🔥' },
-      { label: 'Slow Burns', emoji: '🌸' },
-    ].map((vibe) => (
-      <div
-        key={vibe.label}
-        className="bg-white shadow-sm hover:shadow-md transition rounded-xl p-4 text-center cursor-pointer hover:bg-pink-100"
-      >
-        <span className="text-3xl">{vibe.emoji}</span>
-        <p className="mt-2 font-medium text-pink-700 text-sm">{vibe.label}</p>
-      </div>
-    ))}
-  </div>
-</section>
-
+      <section>
+        <h2 className="text-2xl font-semibold text-pink-600 mb-3">Reading Vibes ✨</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {[
+            { label: 'Sweet Romance', emoji: '💕' },
+            { label: 'Nigerian Folklore', emoji: '🧚🏽‍♀️' },
+            { label: 'Dark & Mysterious', emoji: '🌑' },
+            { label: 'Magical Escapes', emoji: '✨' },
+            { label: 'Cozy Reads', emoji: '🎀' },
+            { label: 'Heartbreakers', emoji: '💔' },
+            { label: 'Steamy Nights', emoji: '🔥' },
+            { label: 'Slow Burns', emoji: '🌸' },
+          ].map((vibe) => (
+            <div
+              key={vibe.label}
+              className="bg-white shadow-sm hover:shadow-md transition rounded-xl p-4 text-center cursor-pointer hover:bg-pink-100"
+            >
+              <span className="text-3xl">{vibe.emoji}</span>
+              <p className="mt-2 font-medium text-pink-700 text-sm">{vibe.label}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

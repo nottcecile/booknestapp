@@ -19,7 +19,7 @@ export default function LoginPage() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       router.push('/dashboard');
-    } catch (err: any) {
+    } catch {
       setError('Invalid email or password');
     }
   };
@@ -42,9 +42,7 @@ export default function LoginPage() {
           Welcome Back
         </h2>
 
-        {error && (
-          <p className="text-red-500 text-sm mb-4 text-center">{error}</p>
-        )}
+        {error && <p className="text-red-500 text-sm mb-4 text-center">{error}</p>}
 
         <input
           type="email"
@@ -71,7 +69,7 @@ export default function LoginPage() {
         </button>
 
         <p className="text-center text-sm mt-4">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link href="/signup" className="text-pink-600 hover:underline">
             Sign up
           </Link>

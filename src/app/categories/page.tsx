@@ -1,8 +1,8 @@
-// src/app/categories/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
+import Image from "next/image";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY;
 
@@ -13,6 +13,21 @@ type Book = {
   description?: string;
   thumbnail?: string;
   previewLink?: string;
+};
+
+// Type for the Google Books API response item
+type GoogleBookItem = {
+  id: string;
+  volumeInfo: {
+    title: string;
+    authors?: string[];
+    description?: string;
+    imageLinks?: {
+      thumbnail?: string;
+      smallThumbnail?: string;
+    };
+    previewLink?: string;
+  };
 };
 
 export default function CategoriesPage() {
@@ -27,16 +42,17 @@ export default function CategoriesPage() {
           `https://www.googleapis.com/books/v1/volumes?q=romance&key=${API_KEY}&maxResults=12`
         );
         const data = await res.json();
-        const mapped = data.items?.map((item: any) => ({
-          id: item.id,
-          title: item.volumeInfo.title,
-          authors: item.volumeInfo.authors || [],
-          description: item.volumeInfo.description,
-          thumbnail:
-            item.volumeInfo.imageLinks?.thumbnail ||
-            item.volumeInfo.imageLinks?.smallThumbnail,
-          previewLink: item.volumeInfo.previewLink,
-        })) || [];
+        const mapped =
+          data.items?.map((item: GoogleBookItem) => ({
+            id: item.id,
+            title: item.volumeInfo.title,
+            authors: item.volumeInfo.authors || [],
+            description: item.volumeInfo.description,
+            thumbnail:
+              item.volumeInfo.imageLinks?.thumbnail ||
+              item.volumeInfo.imageLinks?.smallThumbnail,
+            previewLink: item.volumeInfo.previewLink,
+          })) || [];
         setBooks(mapped);
       } catch (error) {
         console.error("Error fetching books:", error);
@@ -98,10 +114,12 @@ export default function CategoriesPage() {
                 className="bg-white shadow rounded p-4 flex flex-col"
               >
                 {book.thumbnail && (
-                  <img
+                  <Image
                     src={book.thumbnail}
                     alt={book.title}
-                    className="mb-3 h-48 object-contain"
+                    width={128}
+                    height={192}
+                    className="mb-3 object-contain"
                   />
                 )}
                 <h2 className="text-lg font-semibold">{book.title}</h2>

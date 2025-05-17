@@ -1,14 +1,14 @@
-// src/app/page.tsx
-'use client';
-
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';import Link from 'next/link';
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-cover bg-center flex items-center justify-center text-white relative" style={{
-      backgroundImage: 'url(https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1740&q=80)'
-    }}>
+    <div
+      className="min-h-screen bg-cover bg-center flex items-center justify-center text-white relative"
+      style={{
+        backgroundImage:
+          'url(https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1740&q=80)',
+      }}
+    >
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
       <div className="relative z-10 text-center max-w-2xl px-4">

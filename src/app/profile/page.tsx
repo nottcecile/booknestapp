@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '@/lib/firebase';
 import Sidebar from '../Sidebar';
+import Image from 'next/image';
 
 export default function ProfilePage() {
   const [user] = useAuthState(auth);
@@ -43,10 +44,12 @@ export default function ProfilePage() {
 
         <div className="bg-white rounded-2xl shadow-md p-6 max-w-xl w-full">
           <div className="flex items-center gap-4 mb-4">
-            <img
+            <Image
               src="/avatar-placeholder.png"
               alt="Avatar"
-              className="w-16 h-16 rounded-full border border-pink-200"
+              width={64}
+              height={64}
+              className="rounded-full border border-pink-200"
             />
             <div>
               <p className="text-xl font-semibold text-pink-800">
@@ -57,7 +60,10 @@ export default function ProfilePage() {
           </div>
 
           <div className="text-gray-700 text-sm leading-relaxed">
-            <p>Welcome to your personal space. In the future, you’ll be able to edit your profile, track reading progress, and more.</p>
+            <p>
+              Welcome to your personal space. In the future, you’ll be able to edit your profile, track
+              reading progress, and more.
+            </p>
           </div>
         </div>
       </div>

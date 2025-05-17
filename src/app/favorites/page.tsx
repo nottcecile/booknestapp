@@ -5,22 +5,32 @@ import { db, auth } from '@/lib/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { collection, getDocs } from 'firebase/firestore';
 import Sidebar from '../Sidebar';
+import Image from 'next/image';
+
+type FavoriteBook = {
+  id: string;
+  title: string;
+  authors?: string[];
+  description?: string;
+  thumbnail?: string;
+  previewLink?: string;
+};
 
 export default function FavoritesPage() {
-  const [favorites, setFavorites] = useState<any[]>([]);
+  const [favorites, setFavorites] = useState<FavoriteBook[]>([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user] = useAuthState(auth);
 
-  const fetchFavorites = async () => {
-    if (!user) return;
-
-    const favRef = collection(db, 'users', user.uid, 'favorites');
-    const snap = await getDocs(favRef);
-    const books = snap.docs.map((doc) => doc.data());
-    setFavorites(books);
-  };
-
   useEffect(() => {
+    const fetchFavorites = async () => {
+      if (!user) return;
+
+      const favRef = collection(db, 'users', user.uid, 'favorites');
+      const snap = await getDocs(favRef);
+      const books = snap.docs.map(doc => ({ id: doc.id, ...(doc.data() as Omit<FavoriteBook, 'id'>) }));
+      setFavorites(books);
+    };
+
     fetchFavorites();
   }, [user]);
 
@@ -33,7 +43,6 @@ export default function FavoritesPage() {
       />
 
       <div className="flex-1 p-8 relative">
-        {/* Hamburger toggle */}
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="sm:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-pink-500 text-white"
@@ -60,10 +69,12 @@ export default function FavoritesPage() {
             {favorites.map((book) => (
               <div key={book.id} className="bg-white shadow rounded p-4 flex flex-col">
                 {book.thumbnail && (
-                  <img
+                  <Image
                     src={book.thumbnail}
                     alt={book.title}
-                    className="mb-3 h-48 object-contain"
+                    width={192}
+                    height={192}
+                    className="mb-3 object-contain"
                   />
                 )}
                 <h2 className="text-lg font-semibold">{book.title}</h2>
@@ -87,7 +98,6 @@ export default function FavoritesPage() {
         )}
       </div>
 
-      {/* Blur overlay */}
       {sidebarOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-40 sm:hidden"
