@@ -19,6 +19,20 @@ type Book = {
   previewLink?: string;
 };
 
+type GoogleBooksItem = {
+  id: string;
+  volumeInfo: {
+    title: string;
+    authors?: string[];
+    description?: string;
+    imageLinks?: {
+      thumbnail?: string;
+      smallThumbnail?: string;
+    };
+    previewLink?: string;
+  };
+};
+
 export default function BooksPage() {
   const [books, setBooks] = useState<Book[]>([]);
   const [queryTerm, setQueryTerm] = useState('nigerian folktales');
@@ -41,7 +55,7 @@ export default function BooksPage() {
         setBooks([]);
         setMessage('No books found.');
       } else {
-        const mapped = data.items.map((item: Record<string, any>) => ({
+        const mapped = data.items.map((item: GoogleBooksItem) => ({
           id: item.id,
           title: item.volumeInfo.title,
           authors: item.volumeInfo.authors || [],
@@ -182,5 +196,3 @@ export default function BooksPage() {
     </div>
   );
 }
-
-
